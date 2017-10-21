@@ -33,7 +33,7 @@
             likeButton: true,
             shareButton: true,
             addThis: null,
-            pluginImagesPath: "src/",
+            pluginImagesPath: "images/",
             albumsPageSize: 0,
             albumsMoreButtonText: "more albums...",
             photosPageSize: 0,
@@ -170,7 +170,7 @@
                                                 listItem.append(albumThumb);
 
                                                 $(albumThumb).on('load',(function () {
-                                                    $(this).fadeIn(300);
+                                                    $(this).fadeIn(200);
                                                 }));
 
                                                 loadIfVisible(albumThumb);
@@ -184,7 +184,7 @@
                                     });
                                     albumListItem.append($("<div>", { class: "fb-album-title", text: $(result.data).get(a).name }));
                                     if (settings.showImageCount) {
-                                        albumListItem.append($("<div>", { class: "fb-album-count", text: $(result.data).get(a).count }));
+                                        albumListItem.append($("<div>", { class: "fb-album-count", text: $(result.data).get(a).count })); 
                                     }
                                     $(albumList).append(albumListItem);
                                     $(albumList).removeClass("fb-loading-image");
@@ -233,21 +233,21 @@
                                             var self = $(this),
                                                 height = self.find("div.fb-album-title").height(),
                                                 padding = 10;
-                                            self.find("div.fb-album-title").slideDown({
-                                                'duration' : 300,
+                                            /*self.find("div.fb-album-title").slideDown({
+                                                'duration' : 200,
                                                 'easing' : 'linear'
                                             });
                                             self.find("div.fb-album-count").css({
                                                 top : (height+padding) + 'px'
-                                            });
+                                            });*/
                                         },
                                         // handler out
                                         function() {
                                             var self = $(this);
-                                            self.find("div.fb-album-title").slideUp({
-                                                'duration' : 300,
+                                         /*   self.find("div.fb-album-title").slideUp({
+                                                'duration' : 200,
                                                 'easing' : 'linear'
-                                            });
+                                            });*/
                                             self.find("div.fb-album-count").css({
                                                 top : '0'
                                             });
@@ -426,9 +426,9 @@
                                     $(container).find(".fb-photos-more").fadeIn();
                                 }
 
-                                $(photoThumb).load(function () {
-                                    $(this).fadeIn(300);
-                                });
+                                $(photoThumb).on('load', (function () {
+                                    $(this).fadeIn(200);
+                                }));
                                 loadIfVisible(photoThumb);
                                 initLightboxes(container.find("a.fb-photo-thumb-link"));
                             }
@@ -668,7 +668,7 @@
                             $(previewImage).show();
                         }
                         previewImage.unbind("load");
-                        previewImage.load(function () {
+                        previewImage.on('load', function () {
                             previewContent.css("display", "block");
                             if (previewText.text().trim() != "" || settings.likeBtn) {
                                 previewText.css("display", "block");
